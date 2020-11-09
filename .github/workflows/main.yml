@@ -1,0 +1,19 @@
+name: Build Tag
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: mr-smithers-excellent/docker-build-push@v4.1
+        with:
+          image: mynameismaxz/research-docker/vae-npvc
+          registry: docker.pkg.github.com
+          dockerfile: Dockerfile
+          username: wk-j
+          password: ${{ secrets.GITHUB_TOKEN }}
